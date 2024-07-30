@@ -39,9 +39,8 @@
                             <thead>
                                 <tr class="text-nowrap" style="text-align:center;">
                                     <th style="text-align:center;">#</th>
-                                    <th style="text-align:center;">Nama Bagian</th>
                                     <th style="text-align:center;">Nama Barang</th>
-                                    <th style="text-align:center;">Barang Terkirim</th>
+                                    <th style="text-align:center;">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody id="show_data">
@@ -129,34 +128,36 @@
             var data = new FormData();
             data.append("namaBarang", $('#namaBarang').val());
 
+            console.log(data);
+
             $.ajax({
                 type: "POST",
-                url: '<?php echo base_url() ?>/cari_item_laporan',
+                url: '<?php echo base_url() ?>cari_item_laporan',
                 dataType: "JSON",
                 data: data,
                 processData: false,
                 contentType: false,
                 success: function(data) {
+                    console.log(data);
                     var html = '';
                     var i;
                     var c = 1;
                     for (i = 0; i < data.length; i++) {
                         // console.log(data[i].item_header_id)
-                        html += '<tr style="text-align:center;">' +
-                            '<td>' + c++ + '</td>' +
-                            '<td style="display:none;">' + data[i].item_header_id + '</td>' +
-                            '<td>' + data[i].merk + '</td>' +
-                            '<td>' + data[i].item_name + '</td>' +
-                            '<td>' + data[i].kode_barang + '</td>' +
-                            '<td>' + data[i].kategori + '</td>' +
-                            '<td style="text-align:center;">' + data[i].stok + '</td>' +
-                            '<td style="text-align:center;">' +
-                            '<a href="#javascript:;" class="btn btn-info item_lihat" data-bs-toggle="modal" data-bs-target="#mDetail" data="' +
-                            data[i].item_header_id + '">Lihat</a>'
-                        '</td>' +
-                        '</tr>';
+                        html += '<tr>' +
+                            '<td style="text-align:center; font-size:12pt;">' + c++ +
+                            '</td>' +
+                            '<td style="text-align:left; font-size:12pt;">' + data[i]
+                            .name + '</td>' +
+                            '<td style="text-align:center; font-size:12pt;"> <a href="<?php echo base_url('sasda') ?>' +
+                            data[i]
+                            .products_id +
+                            '" class="btn btn-info item_lihat">Lihat History</a > </td> ' +
+                            '</tr>';
                     }
                     $('#show_data').html(html);
+
+
 
                 },
                 error: function(data, jqXHR, textStatus, errorThrown) {
@@ -168,37 +169,7 @@
         });
 
 
-        function tampil_data_barang() {
-            $.ajax({
-                type: 'GET',
-                url: '<?php echo base_url() ?>/',
-                async: false,
-                dataType: 'json',
-                success: function(data) {
-                    var html = '';
-                    var i;
-                    var c = 1;
-                    for (i = 0; i < data.length; i++) {
-                        // console.log(data[i].item_header_id)
-                        html += '<tr style="text-align:center;">' +
-                            '<td>' + c++ + '</td>' +
-                            '<td style="display:none;">' + data[i].item_header_id + '</td>' +
-                            '<td>' + data[i].merk + '</td>' +
-                            '<td>' + data[i].item_name + '</td>' +
-                            '<td>' + data[i].kode_barang + '</td>' +
-                            '<td>' + data[i].kategori + '</td>' +
-                            '<td style="text-align:center;">' + data[i].stok + '</td>' +
-                            '<td style="text-align:center;">' +
-                            '<a href="#javascript:;" class="btn btn-info item_lihat" data-bs-toggle="modal" data-bs-target="#mDetail" data="' +
-                            data[i].item_header_id + '">Lihat</a>'
-                        '</td>' +
-                        '</tr>';
-                    }
-                    $('#show_data').html(html);
-                }
 
-            });
-        }
     });
 </script>
 

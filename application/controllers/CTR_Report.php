@@ -958,16 +958,17 @@ class CTR_Report extends CI_Controller
 
 	public function laporan_BarangTransaksi()
 	{
-		// $login = $this->session->userdata('user_id');
-
-		$data = $this->M_Transactions->get_ReportallTrans();
-
-		$data['listItem'] = $data;
-
-
 		$this->load->view('admin/template/1_header');
 		$this->load->view('admin/template/2_sidebar');
 		$this->load->view('admin/template/3_navbar');
-		$this->load->view('admin/report/V_ReportUserEachItem', $data);
+		$this->load->view('admin/report/V_ReportUserEachItem');
+	}
+
+	public function laporan_BarangTransaksiDetail()
+	{
+		$this->load->view('admin/template/1_header');
+		$this->load->view('admin/template/2_sidebar');
+		$this->load->view('admin/template/3_navbar');
+		$this->load->view('admin/report/V_ReportUserEachItem');
 	}
 }

@@ -12,8 +12,7 @@
 
                         <div class="col-5">
                             <div class="position-relative">
-                                <img src="<?php echo base_url("assets/img/gif/data4.gif") ?>" alt="Computer man"
-                                    width="50%" style="margin-left: 100px;">
+                                <img src="<?php echo base_url("assets/img/gif/data4.gif") ?>" alt="Computer man" width="50%" style="margin-left: 100px;">
                             </div>
                         </div>
                     </div>
@@ -32,13 +31,13 @@
                             <tbody id="show_data">
                                 <?php $i = 1; ?>
                                 <?php foreach ($listItem as $data) : ?>
-                                <tr style="text-align:center;">
-                                    <td><?= $i ?></td>
-                                    <td><?= $data->department_name; ?></td>
-                                    <td><?= $data->name; ?></td>
-                                    <td><?= $data->terkirim; ?></td>
-                                </tr>
-                                <?php $i++ ?>
+                                    <tr style="text-align:center;">
+                                        <td><?= $i ?></td>
+                                        <td><?= $data->department_name . " / " . $data->alias_dept  ?></td>
+                                        <td><?= $data->name; ?></td>
+                                        <td><?= $data->terkirim; ?></td>
+                                    </tr>
+                                    <?php $i++ ?>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
@@ -53,7 +52,7 @@
             <div class="mb-2 mb-md-0">
                 ©
                 <script>
-                document.write(new Date().getFullYear());
+                    document.write(new Date().getFullYear());
                 </script>
                 , IDM
             </div>
@@ -110,15 +109,15 @@
 
 
 <script type="text/javascript">
-$(document).ready(function() {
-    // $('#mydata').dataTable();
-    $('#mydata').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
+    $(document).ready(function() {
+        // $('#mydata').dataTable();
+        $('#mydata').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
     });
-});
 </script>
 
 

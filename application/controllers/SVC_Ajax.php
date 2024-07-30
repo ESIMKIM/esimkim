@@ -16,6 +16,7 @@ class SVC_Ajax extends CI_Controller
         $this->load->model('M_Auth', 'M_Auth');
         $this->load->model('M_Products', 'M_Products');
         $this->load->model('M_Category', 'M_Category');
+        $this->load->model('M_Report', 'M_Report');
         $this->load->model('M_Signature', 'M_Signature');
         $this->load->model('M_Satuan', 'M_Satuan');
         $this->load->model('M_Transactions', 'M_Transactions');
@@ -777,9 +778,11 @@ class SVC_Ajax extends CI_Controller
 
     function cari_dataItems()
     {
+        $namaBarang = $this->input->post('namaBarang');
+        $dataPencarian = $this->M_Report->get_idBarang($namaBarang);
 
 
-        redirect('laporan-transaksi');
+        echo json_encode($dataPencarian);
     }
 
 

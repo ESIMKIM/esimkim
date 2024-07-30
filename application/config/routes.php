@@ -147,6 +147,7 @@ $route['laporan-analis'] = 'CTR_Report/report_analis/';
 $route['laporan-stokall'] = 'CTR_Report/laporan_stok/';
 $route['laporan-transUser'] = 'CTR_Report/laporan_userTrans/';
 $route['laporan-itemTrans'] = 'CTR_Report/laporan_BarangTransaksi/';
+$route['laporan-itemTransDetail/(:any)'] = 'CTR_Report/laporan_BarangTransaksiDetail/$1';
 
 //                Settings                      //
 $route['settings-user'] = 'CTR_Settings/set_user';

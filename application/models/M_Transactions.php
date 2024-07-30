@@ -17,7 +17,7 @@ class M_Transactions extends CI_Model
     function get_ReportallTrans()
     {
         $value = $this->db->query(
-            "SELECT dx.department_name, td.td_id, p.`name`, p.`products_id` , SUM(td.`approval`) AS terkirim
+            "SELECT dx.department_name, dx.alias_dept, td.td_id, p.`name`, p.`products_id` , SUM(td.`approval`) AS terkirim
                 FROM `tbl_transaction_detail` AS td
                 JOIN `tbl_transaction_header` AS th
                 ON th.`th_id` = td.`th_id`

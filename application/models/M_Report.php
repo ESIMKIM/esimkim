@@ -4,6 +4,37 @@ defined('BASEPATH') or die('No direct script access allowed!');
 class M_Report extends CI_Model
 {
 
+    public function get_idBarang($namaBarang)
+    {
+        $value = $this->db->query(
+            "SELECT p.products_id, p.name
+            FROM tbl_products AS p 
+            WHERE p.name LIKE '%$namaBarang%'"
+        )->result();
+
+        return $value;
+    }
+
+    public function get_detailItemHistory($idBarang)
+    {
+        $value = $this->db->query(
+            "SELECT dep.alias_dept, p.name, tth.no_surat, tth.tgl_surat ,ttd.quantity, ttd.approval
+            FROM tbl_transaction_header AS tth
+            JOIN tbl_transaction_detail AS ttd
+            ON tth.th_id = ttd.th_id
+            JOIN tbl_user AS us
+            ON tth.user_id = us.user_id
+            JOIN tbl_department AS dep
+            ON dep.id_department = us.dept_id
+            JOIN tbl_products AS p
+            ON ttd.products_id = p.products_id
+            WHERE p.products_id = '$idBarang' AND YEAR(tth.created_date) =YEAR(CURDATE())
+            ORDER BY tth.tgl_surat DESC"
+        )->result();
+
+        return $value;
+    }
+
     public function get_report_AllHistory()
     {
         $value = $this->db->query(
